@@ -1,47 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mind Mapping</title>
+    <title>TAI Data Analysis</title>
     	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="./bower_components/socket.io-client/socket.io.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
 		<script type="text/javascript"  src="js/main-d3.js"></script>
+		<!-- <script type="text/javascript"  src="js/wavesurfer-audio.js"></script> -->
     	<link href="css/muse.css" rel="stylesheet">
     	<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+
+    <!-- Video.JS -->
+    <link href="http://vjs.zencdn.net/5.9.2/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/5.9.2/video.js"></script>
+    <!-- If you'd like to support IE8 -->
+    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   </head>
 
   <body>
 		<script type="text/javascript" src="./bower_components/highcharts/highcharts.js"></script>
 		<script type="text/javascript" src="js/modules/exporting.js"></script>
-		<img class="logo" src="images/divinediva-logo-flat.png" />		
-    	
+		<img class="logo" src="assets/images/m83intro--logo.png" />
+
 		<div class="main-container">
-			<h1>WOMENATION Mind Training</h1>
+			<h1>Team One AI - M83 Music Video Data Analysis</h1>
 			<div>
-	        	<button type="button" class="muse-btn">Record</button>
-	        	<button type="button" class="muse-btn">Analyze</button>
-	        	<button type="button" class="muse-btn">Compare</button><br />
-	        	<p>Emotional valance:</p>
-	        	<button type="button" class="btn btn-default btn-sm">
+      	<button type="button" class="muse-btn">Record</button>
+      	<button type="button" class="muse-btn">Analyze</button>
+      	<button type="button" class="muse-btn">Compare</button><br />
+
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+ data-setup="{}">
+          <source src="assets/video/caseyvid.mp4" type='video/mp4'>
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+          </p>
+        </video>
+
+        <p>Emotional valence:</p>
+      	<button type="button" class="btn btn-default btn-sm">
 				  <span class="glyphicon glyphicon-plus-sign"></span> Positive
 				</button>
-	        	<button type="button" class="btn btn-default btn-sm">
+      	<button type="button" class="btn btn-default btn-sm">
 				  <span class="glyphicon glyphicon-adjust"></span> Neutral
 				</button>
-	        	<button type="button" class="btn btn-default btn-sm">
+      	<button type="button" class="btn btn-default btn-sm">
 				  <span class="glyphicon glyphicon-minus-sign"></span> Negative
 				</button>
+
+        <p>Audio Waveform:</p>
+        <div id="waveform"></div>
+
 				<p>Raw EEG Data:</p>
 	     	</div>
-			<ol>
+			<ul>
 				<li style="color: red;">Position 1: Left Ear(A1), Range: 0.0 - 1682.0 in microvolts </li>
 				<li style="color: #92278F;">Position 2: Left Forehead(FP1), Range: 0.0 - 1682.0 in microvolts </li>
 				<li style="color: #0071BB;">Position 3: Right Forehead(FP2), Range: 0.0 - 1682.0 in microvolts </li>
 				<li style="color: #00A651;">Position 4: Right Ear(A2), Range: 0.0 - 1682.0 in microvolts </li>
-			</ol>
+			</ul>
 		</div>
 
   </body>
+  <script>
+    var wavesurfer = WaveSurfer.create({
+        container: '#waveform'
+    });
+
+    wavesurfer.load('../assets/audio/m83_go.mp3');
+
+    wavesurfer.on('ready', function () {
+        wavesurfer.play();
+    });
+  </script>
 </html>

@@ -23,6 +23,10 @@
     "osc": "^2.0.3",
     "redis": "~0.11.0",
     "socket.io": "^1.4.6",
-    "url": "~0.10.1"
+    "url": "~0.10.1",
+    "wavesurfer.js": "^1.1.1"
+  },
+  "devDependencies": {
+    "video.js": "^5.9.2"
   }
 }

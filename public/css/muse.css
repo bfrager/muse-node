@@ -3,17 +3,32 @@ body, p, h1, h2 {
 }
 
 .main-container {
-	margin: 30px
+	margin: 0 auto;
+	padding-top: 25px;
+	text-align: center;
+}
+
+#waveform {
+	width: 960px;
+	margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+li {
+    text-align: left;
+		margin-left: 150px;
 }
 
 .logo{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -300px;
-    margin-left: -300px;
-    width: 500px;
-    height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 33%;
+  margin-top: 0px;
+  margin-left: 0px;
 	opacity: .3;
 }​
 
@@ -27,26 +42,24 @@ body, p, h1, h2 {
 }
 
 .muse-btn{
-    text-transform:uppercase; 
-  font-weight:bold; 
-  border-radius:2px; 
-  background-color:transparent; 
-  border:3px solid #333; 
+  text-transform:uppercase;
+  font-weight:bold;
+  border-radius:2px;
+  background-color:transparent;
+  border:3px solid #333;
   padding: 6px 12px;
-  transition:all 1s ease; 
-  font-family: 'Lato', sans-serif; 
+	margin: 10px;
+  transition:all 1s ease;
+  font-family: 'Lato', sans-serif;
   font-weight: 900;
 }
+
 .muse-btn:hover, button:hover {
-    outline:0;  
-  color:#FFF; 
+    outline:0;
+  color:#FFF;
   background-color: #DCDCDC;
 }
 
 p {
     font-weight: 900;
 }
-
-
-
-
