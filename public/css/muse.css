@@ -13,6 +13,12 @@ body, p, h1, h2 {
 	margin: 0 auto;
 }
 
+.center {
+	margin: 0 auto;
+	width: 400px;
+	text-align: center;
+}
+
 ul {
     list-style: none;
     margin: 0;
