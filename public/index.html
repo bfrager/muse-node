@@ -7,7 +7,8 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="./bower_components/socket.io-client/socket.io.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
-		<script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.57/plugin/wavesurfer.timeline.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
 		<script type="text/javascript"  src="js/main-d3.js"></script>
 		<script type="text/javascript"  src="js/facial-d3.js"></script>
     <script type="text/javascript"  src="js/controls.js" defer></script>
@@ -36,7 +37,13 @@
       <img class="logo" src="assets/images/m83intro--logo.png" />
 
       <div class="container" id="controls">
-        <button type="button" class="muse-btn" id="playPause">Play / Pause</button>
+        <button type="button" class="muse-btn" id="playPause">
+          <i class="glyphicon glyphicon-play"></i>
+          Play
+          /
+          <i class="glyphicon glyphicon-pause"></i>
+          Pause
+        </button>
         <button type="button" class="muse-btn" id="rec">Record</button>
         <p class="row">
           <div class="col-xs-1">
@@ -44,7 +51,7 @@
           </div>
 
           <div class="col-xs-10">
-            <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%" />
+            <input id="slider" type="range" min="1" max="100" value="1" style="width: 100%" />
           </div>
 
           <div class="col-xs-1">
@@ -55,7 +62,12 @@
 
       <div class="container" id="audio">
         <p>Audio Waveform:</p>
-        <div id="waveform"></div>
+        <div id="waveform">
+          <div class="progress progress-striped active" id="progress-bar">
+              <div class="progress-bar progress-bar-info"></div>
+          </div>
+        </div>
+        <div id="wave-timeline"></div>
       </div>
 
       <div class="container" id="video">

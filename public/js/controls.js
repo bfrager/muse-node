@@ -8,10 +8,11 @@ $( document ).ready( function() {
         container: '#waveform',
         hideScrollbar: true,
         waveColor: 'gray',
-        progressColor: 'teal'
+        progressColor: 'teal',
+        loaderColor   : 'purple',
+        cursorColor   : 'navy'
     });
     var slider = document.querySelector('#slider');
-
 
     //event listeners
     masterButton.addEventListener('click', onClick);
@@ -24,7 +25,14 @@ $( document ).ready( function() {
     wavesurfer.load('../assets/audio/m83_go.mp3');
 
     wavesurfer.on('ready', function () {
-        // wavesurfer.play();
+        // Init Timeline plugin
+        var timeline = Object.create(WaveSurfer.Timeline);
+
+        timeline.init({
+            wavesurfer: wavesurfer,
+            container: '#wave-timeline'
+        });
+
     });
 
     wavesurfer.on('play', function () {
@@ -49,5 +57,34 @@ $( document ).ready( function() {
     function onClick() {
       wavesurfer.playPause();
     }
+
+    if (location.search.match('scroll')) {
+        options.minPxPerSec = 100;
+        options.scrollParent = true;
+    }
+
+    if (location.search.match('normalize')) {
+        options.normalize = true;
+    }
+
+    /* Progress bar */
+    (function () {
+        var progressDiv = document.querySelector('#progress-bar');
+        var progressBar = progressDiv.querySelector('.progress-bar');
+
+        var showProgress = function (percent) {
+            progressDiv.style.display = 'block';
+            progressBar.style.width = percent + '%';
+        };
+
+        var hideProgress = function () {
+            progressDiv.style.display = 'none';
+        };
+
+        wavesurfer.on('loading', showProgress);
+        wavesurfer.on('ready', hideProgress);
+        wavesurfer.on('destroy', hideProgress);
+        wavesurfer.on('error', hideProgress);
+    }());
 
   });
