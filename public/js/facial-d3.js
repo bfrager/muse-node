@@ -1,5 +1,9 @@
 $( function() {
 
+    d3.csv("../assets/data/IMG_6135facialcapture.csv")
+      .row(function(d) { return {key: d.key, value: +d.value}; })
+      .get(function(error, rows) { console.log(rows); });
+
     var n = 40,
         random = d3.random.normal( 800, 1000 );
 

@@ -9,6 +9,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
 		<script type="text/javascript"  src="js/main-d3.js"></script>
+		<script type="text/javascript"  src="js/facial-d3.js"></script>
     <script type="text/javascript"  src="js/controls.js" defer></script>
 
     <link href="css/muse.css" rel="stylesheet">
@@ -26,7 +27,7 @@
 
   <body>
 		<script type="text/javascript" src="./bower_components/highcharts/highcharts.js"></script>
-		<!-- <script type="text/javascript" src="js/modules/exporting.js"></script> -->
+		<script type="text/javascript" src="./bower_components/highcharts/modules/exporting.js"></script>
 
     <div class="main-container">
 
@@ -34,18 +35,31 @@
 
       <img class="logo" src="assets/images/m83intro--logo.png" />
 
-      <div id="controls">
+      <div class="container" id="controls">
         <button type="button" class="muse-btn" id="playPause">Play / Pause</button>
         <button type="button" class="muse-btn" id="rec">Record</button>
+        <p class="row">
+          <div class="col-xs-1">
+            <i class="glyphicon glyphicon-zoom-in"></i>
+          </div>
+
+          <div class="col-xs-10">
+            <input id="slider" type="range" min="1" max="200" value="1" style="width: 100%" />
+          </div>
+
+          <div class="col-xs-1">
+            <i class="glyphicon glyphicon-zoom-out"></i>
+          </div>
+        </p>
       </div>
 
-      <div id="audio">
+      <div class="container" id="audio">
         <p>Audio Waveform:</p>
         <div id="waveform"></div>
       </div>
 
-      <div id="video">
-        <video id="my-video" class="video-js center" controls preload="auto" width="640" height="264"
+      <div class="container" id="video">
+        <video id="my-video" class="video-js center" preload="auto"
  data-setup="{}">
           <source src="assets/video/caseyvid.mp4" type='video/mp4'>
           <p class="vjs-no-js">
@@ -55,7 +69,7 @@
         </video>
       </div>
 
-      <div id="eeg">
+      <div class="container" id="eeg">
 				<p>Raw EEG Data:</p>
   			<ul>
   				<li style="color: red;">Position 1: Left Ear(A1), Range: 0.0 - 1682.0 in microvolts </li>
@@ -65,18 +79,6 @@
   			</ul>
       </div>
 		</div>
-
-    <!-- <script>
-      var wavesurfer = WaveSurfer.create({
-          container: '#waveform'
-      });
-
-      wavesurfer.load('../assets/audio/m83_go.mp3');
-
-      wavesurfer.on('ready', function () {
-          wavesurfer.play();
-      });
-    </script> -->
 
   </body>
 
