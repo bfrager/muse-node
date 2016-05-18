@@ -13,6 +13,10 @@ body, p, h1, h2 {
 	margin: 0 auto;
 }
 
+timeline canvas {
+	margin-left: -480px;
+}
+
 .center {
 	margin: 0 auto;
 	width: 400px;
