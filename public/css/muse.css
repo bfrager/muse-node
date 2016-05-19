@@ -42,12 +42,16 @@ li {
 	opacity: .3;
 }​
 
-.x.axis line {
-	  shape-rendering: crispEdges;
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+  shape-rendering: crispEdges;
 }
 
 .line {
     fill: none;
+	  stroke: steelblue;
     stroke-width: 2px;
 }
 
