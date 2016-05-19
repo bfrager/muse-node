@@ -43,7 +43,7 @@ li {
 }​
 
 .x.axis line {
-    shape-rendering: auto;
+	  shape-rendering: crispEdges;
 }
 
 .line {
