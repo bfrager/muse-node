@@ -23,6 +23,11 @@ timeline canvas {
 	text-align: center;
 }
 
+.chart {
+	margin: 0 auto;
+	text-align: center;
+}
+
 ul {
     list-style: none;
     margin: 0;
@@ -82,4 +87,15 @@ p {
   fill:white;
   stroke:black;
   opacity:0.8;
+}
+
+.navigator .data {
+    fill: lightgrey;
+    stroke-width: 0px;
+}
+
+.navigator .line {
+    fill: none;
+    stroke: darkgrey;
+    stroke-width: 1px;
 }
