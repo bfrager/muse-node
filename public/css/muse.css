@@ -69,11 +69,17 @@ li {
 }
 
 .muse-btn:hover, button:hover {
-    outline:0;
+  outline:0;
   color:#FFF;
   background-color: #DCDCDC;
 }
 
 p {
-    font-weight: 900;
+  font-weight: 900;
+}
+
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:0.8;
 }

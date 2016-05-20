@@ -41,7 +41,7 @@ $( function() {
                 return x( d.timestamp );
             } )
             .y( function(d) {
-                return y( d.joyct_emotion_nonlinear_causal );
+                return y( d.confidence );
             } );
 
         var svg = d3.select( "body" ).append( "div" ).append( "svg" )
@@ -55,28 +55,42 @@ $( function() {
         d3.csv("../assets/data/IMG_6135facialcapture_clean.csv", function(error, data) {
           if (error) throw error;
 
-          data.forEach(function(d) {
-            Object.keys(d).forEach(function(key){
-              d[key] = +d[key];
-            });
-          });
+          // data.forEach(function(d) {
+          //   Object.keys(d).forEach(function(key){
+          //     d[key] = +d[key];
+          //   });
+          // });
 
-          color.domain(d3.keys(data[0]).filter(function(key) { return key !== "timestamp"; }));
+
+          var emotionsRef = [
+            "joyct_emotion_nonlinear_causal",
+            "disgustct_emotion_nonlinear_causal",
+            "sadnessct_emotion_nonlinear_causal",
+            "angerct_emotion_nonlinear_causal",
+            "surprisect_emotion_nonlinear_causal",
+            "contemptct_emotion_nonlinear_causal",
+            "fearct_emotion_nonlinear_causal"
+          ];
+
+          // color.domain(d3.keys(data[0]).filter(function(key) { return key !== "timestamp"; }));
+          color.domain(d3.keys(data[0]).filter(function(key) { return emotionsRef.includes(key) }));
 
           var emotions = color.domain().map(function(name) {
             return {
               name: name,
               values: data.map(function(d) {
-                return {timestamp: d.timestamp, confidence: +d[name]};
+                return {timestamp: +d.timestamp, confidence: +d[name]};
               })
             };
           });
 
-          x.domain(d3.extent(data, function(d) { return d.timestamp; }));
+          // x.domain(d3.extent(data, function(d) { return d.timestamp; }));
+          x.domain([0, 250000]);
 
           y.domain([
             0,
-            d3.max(data, function(d) { return d.joyct_emotion_nonlinear_causal; })
+            100
+            // d3.max(data, function(d) { return d.joyct_emotion_nonlinear_causal; })
           ]);
 
           svg.append("g")
@@ -98,18 +112,19 @@ $( function() {
               .attr("y", 6)
               .attr("dy", ".71em")
               .style("text-anchor", "end")
-              .text("Confidence");
-
+              .text("Intensity");
 
           var emotion = svg.selectAll(".emotion")
               .data(emotions)
               .enter().append("g")
               .attr("class", "emotion");
 
-          console.log(emotion);
           emotion.append("path")
               .attr("class", "line")
-              .attr("d", function(d) { return line(d.values); })
+              .attr("d", function(d) {
+                return line(d.values);
+              })
+              .attr("data-legend",function(d) { return d.name.slice(0, -27)})
               .style("stroke", function(d) { return color(d.name); });
 
           emotion.append("text")
@@ -119,10 +134,19 @@ $( function() {
               .attr("dy", ".35em")
               .text(function(d) { return d.name; });
 
-          svg.append("path")
-              .datum(data)
-              .attr("class", "line")
-              .attr("d", line);
+          legend = svg.append("g")
+              .attr("class","legend")
+              .attr("transform","translate(50,30)")
+              .style("font-size","12px")
+              .call(d3.legend)
+
+            setTimeout(function() {
+              legend
+                .style("font-size","20px")
+                .attr("data-style-padding",10)
+                .call(d3.legend)
+            },1000)
+
         });
 
 
